@@ -44,6 +44,12 @@ h1 span {
   background: #111;
   width: 100%;
   cursor: auto;
+  transform: translateY(calc(100% - 8px));
+  transition: transform 0.2s ease-out;
+}
+
+.video-container:hover .controls {
+  transform: translateY(0%);
 }
 
 .progress-bar {

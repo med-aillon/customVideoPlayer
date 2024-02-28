@@ -90,3 +90,38 @@ function handleVolumeModification() {
     muteImg.src = "ressources/unmute.svg";
   }
 }
+
+const progressBar = document.querySelector(".progress-bar");
+
+let rect = progressBar.getBoundingClientRect();
+const largeur = rect.width;
+
+window.addEventListener("resize", handleResize);
+
+function handleResize() {
+  rect = progressBar.getBoundingClientRect();
+}
+
+progressBar.addEventListener("click", handleProgressNavigation);
+
+function handleProgressNavigation(e) {
+  const x = e.clientX - rect.left;
+
+  const widthPercent = x / largeur;
+
+  video.currentTime = video.duration * widthPercent;
+}
+
+const fullScreenToggler = document.querySelector(".fullscreen-toggler");
+const videoContainer = document.querySelector(".video-container");
+
+fullScreenToggler.addEventListener("click", toggleFullScreen);
+videoContainer.addEventListener("dblclick", toggleFullScreen);
+
+function toggleFullScreen() {
+  if (document.fullscreenElement) {
+    document.exitFullscreen();
+  } else {
+    videoContainer.requestFullscreen();
+  }
+}
